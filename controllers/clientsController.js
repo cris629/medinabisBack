@@ -1,5 +1,22 @@
 const conection = require('../configConection/config');
 
+exports.list = async (req, res, next) => {
+    let mensaje="OK";
+	const connectionDB = conection.createConectionSQL();
+    let results = null;
+	try{
+        results = await connectionDB.query("SELECT * FROM usuario");
+        res.status(200);
+	} catch ( err ) {
+		console.log('Error while performing Query');
+		console.log(err);
+		mensaje= "NO_OK";
+	} finally {
+		await connectionDB.close();
+		res.send(results);
+	}
+}
+
 exports.register = async (req, res, next) => {
     let mensaje="OK";
 	const bodyInformation = req.body;
