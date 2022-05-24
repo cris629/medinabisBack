@@ -9,7 +9,7 @@ router.get('/',(req, res) => {
 
 router.get('/list', productController.list);
 router.get('/listAll', productController.listAll);
-/*router.post('/add', productController.register);
-router.post('/login',  productController.login);*/
+router.post('/add', productController.add);
+router.delete('/delete',  productController.delete);
 
 module.exports = router;
